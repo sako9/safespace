@@ -1,0 +1,19 @@
+{
+  "name": "safespace",
+  "version": "1.0.0",
+  "description": "VandyHacks Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sako9/safespace.git"
+  },
+  "author": "Sam Nwosu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sako9/safespace/issues"
+  },
+  "homepage": "https://github.com/sako9/safespace#readme"
+}
