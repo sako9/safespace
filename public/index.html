@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en" ng-app="safe">
+    <head>
+        <meta charset="UTF-8">
+        <Title>Placeholder</Title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="css/style.css">
+        
+        <!--js-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="libs/angular/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+        <script src="libs/socket-io-client/socket.io.js"></script>
+
+        <script src="libs/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="libs/angular-animate/angular-animate.min.js"></script>
+        <script src="libs/angular-route/angular-route.js"></script>
+        <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers/MainCtrl.js"></script>
+        <script src="js/controllers/ProfilCtrl.js"></script>
+        <script src="js/services/UserService.js"></script>
+    </head>
+    <body style="height: 100%;" ng-controller="MainController">
+        <div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>Topics</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li>
+            <a data-toggle="collapse" data-target="#demo" href="#">Politics</a>
+            <div id="demo" class="collapse">
+                <ul class="nav nav-pills nav-stacked" style="padding-left:30px">
+                    <li><div style="border:1px solid black;">View:Climate change is a top isssue <br> Opposing:Climate change is not a priority <br><input type="submit" class="btn btn-default" ng-click="addTab({topic:'Politics',view:'Climate change is a top isssue', oview:'Climate change is not a priority', id:'58282407a33613866df5a8ca'})" value = "debate"/></div></li>
+                    <li><div style="border:1px solid black;">View: There should be a public option to healthcare <br> Opposing:Healthcare should be privatized <br><input type="submit" class="btn btn-default" ng-click="addTab({topic:'Politics',view:'There should be a public option to healthcare', oview:'Healthcare should be privatized ', id:'58282407a33613866df5a8ca'})" value = "debate"/></div></li>
+                    <li><div style="border:1px solid black;">View: We should legalize marinara  <br> Opposing:We shouldn't legalize marinara <br><input type="submit" class="btn btn-default" ng-click="addTab({topic:'Politics',view:'There should be a public option to healthcare', oview:'Healthcare should be privatized ', id:'58282407a33613866df5a8ca'})" value = "debate"/></div></li>
+                    <li ng-repeat="item in politics"><div style="border:1px solid black;">View:{{item.view}} <br> Opposing:{{item.oview}} <br><input type="submit" class="btn btn-default" ng-click="addTab(item)" value = "Debate"/></div></li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a data-toggle="collapse" data-target="#race" href="#">Race</a>
+            <div id="race" class="collapse">
+                <ul class="nav nav-pills nav-stacked" style="padding-left:30px">
+                    <li><div style="border:1px solid black;">View:We shouldn't allow more immigrants into the country <br> Opposing:We should allow more immigrants into the country <br><input type="submit" class="btn btn-default" ng-click="addTab({topic:'Race',view:'We shouldnt allow more immigrants into the country', oview:'We should allow more immigrants into the country', id:'58282407a33613866df5a8ca'})" value = "debate"/></div></li>
+                    <li><div style="border:1px solid black;">View: Racism is a big issue in the unites states <br> Opposing:Race is not as big as an issue as it used to be <br><input type="submit" class="btn btn-default" ng-click="addTab({topic:'Race',view:'There should be a public option to healthcare', oview:'Healthcare should be privatized ', id:'58282407a33613866df5a8ca'})" value = "debate"/></div></li>
+                    <li><div style="border:1px solid black;">View: Pro interacial marriage  <br> Opposing:against interacial marriage<br><input type="submit" class="btn btn-default" ng-click="addTab({topic:'Race',view:' Pro interacial marriage', oview:'against interacial marriage ', id:'58282407a33613866df5a8ca'})" value = "debate"/></div></li>
+                    <li ng-repeat="item in race"><div style="border:1px solid black;">View:{{item.view}} <br> Opposing:{{item.oview}} <br><input type="submit" class="btn btn-default" ng-click="addTab(item)" value = "Debate"/></div></li>
+                </ul>
+            </div>
+        </li>
+        
+        <li>
+            <a data-toggle="collapse" data-target="#gender" href="#">Gender</a>
+            <div id="gender" class="collapse">
+                <ul class="nav nav-pills nav-stacked" style="padding-left:30px">
+                    <li><div style="border:1px solid black;">View:Women should be able to get an abortion <br> Opposing:Women should not be allowed to get an abortion <br><input type="submit" class="btn btn-default" ng-click="addTab({topic:'Gender',view:'Women should be able to get an abortion ', oview:'Women should not be allowed to get an abortion', id:'58282407a33613866df5a8ca'})" value = "debate"/></div></li>
+                    <li><div style="border:1px solid black;">View: There is no gender pay gap <br> Opposing:There is an gender pay gap <br><input type="submit" class="btn btn-default" ng-click="addTab({topic:'Gender',view:'There is no gender pay gap', oview:'There is an gender pay gap ', id:'58282407a33613866df5a8ca'})" value = "debate"/></div></li>
+                    <li><div style="border:1px solid black;">View:Men can be victims of domestic abuse and/or rape <br> Opposing:Men can't be victims in these situations<br><input type="submit" class="btn btn-default" ng-click="addTab({topic:'Gender',view:'View:Men can be victims of domestic abuse and/or rape', oview:'Men cant be victims in these situations ', id:'58282407a33613866df5a8ca'})" value = "debate"/></div></li>
+                    <li ng-repeat="item in race"><div style="border:1px solid black;">View:{{item.view}} <br> Opposing:{{item.oview}} <br><input type="submit" class="btn btn-default" ng-click="addTab(item)" value = "Debate"/></div></li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a data-toggle="collapse" data-target="#other" href="#">Other</a>
+            <div id="other" class="collapse">
+                <ul class="nav nav-pills nav-stacked" style="padding-left:30px">
+                    <li ng-repeat="item in other"><div style="border:1px solid black;">View:{{item.view}} <br> Opposing:{{item.oview}} <br><input type="submit" class="btn btn-default" ng-click="addTab(item)" value = "Debate"/></div></li>
+                </ul>
+            </div>
+        </li>
+      </ul><br>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add a Topic</button>
+    </div>
+    <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">New Topic</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form" >
+          <div class="form-group">
+            <label  class="col-sm-2 control-label"
+                      for="inputEmail3">Category</label>
+            <div class="col-sm-10">
+                <select name="inputEmail3" class="form-control" ng-model="top.topic">
+                  <option value="Politics">Politics</option>
+                  <option value="Race">Race</option>
+                  <option value="Gender">Gender</option>
+                  <option value="Other">Other</option>
+                </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label"
+                  for="inputPassword3" >Your Viewpoint</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control"
+                    id="inputPassword3" placeholder="I think that..." ng-model="top.view"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label"
+                  for="opposing" >Opposing Viewpoint</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control"
+                    id="opposing" placeholder="Someone who thinks that..." ng-model="top.oview"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <input type="submit" class="btn btn-default" ng-click="addTopic()" value = "Submit"/>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <div class="jumbotron text-center" style="height:100%;" ng-if="counter == 0">
+        <h1>Start a chat!</h1>
+
+        <p>You can find currently open topics in the side bar or create a new topic! </p>
+    </div>
+        <tabset class="tab-container"ng-if="counter > 0">
+              <tab ng-repeat="tab in tabs" active="tab.active" tab-highlight> <!-- the tab highlight directive -->
+                <tab-heading>
+                  <span>{{tab.title}}</span> <i class="glyphicon glyphicon-remove" ng-click="removeTab($event, $index)"></i> <!-- the tab close button -->
+                </tab-heading>
+                <h1>{{tab.item.view}} vs {{tab.item.oview}}</h1>
+                <ul id="messages">
+                    <li ng-repeat="item in tab.messages track by $index">{{item}}</li>
+                </ul>
+                <form class="form-horizontal" role="form" >
+                  <input id="m" autocomplete="off" style="width:60% " ng-model=tab.currentmsg /><input type="submit" class="btn btn-default" class="btn btn-default" ng-click="sendMessage(tab )" value="Submit"/>
+                </form>
+              </tab>
+              <!-- this is the open new tab button -->
+        </tabset>
+    </div>
+</div>
+
+<footer class="container-fluid">
+  <p>Footer Text</p>
+</footer>
+
+    </body>
+</html>

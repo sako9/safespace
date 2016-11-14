@@ -1,0 +1,24 @@
+<div class="jumbotron text-center" style="height:100%;" ng-if="counter == 0">
+    <h1>Start a chat!</h1>
+
+    <p>You can find currently open topics in the side bar or create a new topic! </p>
+</div>
+<tabset class="tab-container"ng-if="counter > 0">
+      <tab ng-repeat="tab in tabs" active="tab.active" tab-highlight> <!-- the tab highlight directive -->
+        <tab-heading>
+          <span>{{tab.title}}</span> <i class="glyphicon glyphicon-remove" ng-click="removeTab($event, $index)"></i> <!-- the tab close button -->
+        </tab-heading>
+        <h1>{{tab.content}}</h1>
+        <ul id="messages"></ul>
+        <form action="">
+          <input id="m" autocomplete="off" /><button>Send</button>
+        </form>
+      </tab>
+      <!-- this is the open new tab button -->
+      <button class="btn btn-default" ng-click="addTab()"></button>
+</tabset>
+
+   
+
+
+    

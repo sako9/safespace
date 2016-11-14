@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/sako9/safespace/issues"
   },
-  "homepage": "https://github.com/sako9/safespace#readme"
+  "homepage": "https://github.com/sako9/safespace#readme",
+  "dependencies": {
+    "body-parser": "~1.4.2",
+    "express": "~4.5.1",
+    "method-override": "~2.0.2",
+    "mongoose": "~4.4",
+    "socket.io": "^1.5.1"
+  }
 }
